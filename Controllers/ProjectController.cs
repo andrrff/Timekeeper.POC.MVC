@@ -8,7 +8,7 @@ namespace Timekeeper.POC.MVC.Controllers;
 public class ProjectController : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetProjects([FromQuery] string orgUrl = "https://dev.azure.com/loopsterbr", string pat = "j4dloqciogg56dg6rhvylr2xxkxkxfc7ynec6k27k7uivbcmiqcq")
+    public IActionResult GetProjects([FromQuery] string orgUrl = "https://dev.azure.com/loopsterbr", string pat = "")
     {
         var azureDevOps = new AzureDevOps();
         var projects    = azureDevOps.GetProjects(orgUrl, pat);

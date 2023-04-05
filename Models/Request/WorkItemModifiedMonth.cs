@@ -14,9 +14,9 @@ public class WorkItemModifiedMonth : IRequestAzureDevOps, IRequestAzureDevopsPro
 
     public WorkItemModifiedMonth()
     {
-        OrgUrl   = "https://dev.azure.com/loopsterbr";
-        Pat      = "j4dloqciogg56dg6rhvylr2xxkxkxfc7ynec6k27k7uivbcmiqcq";
-        ProjName = "LoopsterBR - Easy Fleet";
-        Name     = "Andre Freitas";
+        OrgUrl   = string.Empty;
+        Pat      = string.Empty;
+        ProjName = string.Empty;
+        Name     = string.Empty;
     }    
 }

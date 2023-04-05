@@ -16,8 +16,8 @@ public class RequestWorkItemById : IRequestAzureDevOps, IRequestWorkItemById
 
     public RequestWorkItemById()
     {
-        OrgUrl     = "https://dev.azure.com/loopsterbr";
-        Pat        = "j4dloqciogg56dg6rhvylr2xxkxkxfc7ynec6k27k7uivbcmiqcq";
-        WorkItemId = "3964";
+        OrgUrl     = string.Empty;
+        Pat        = string.Empty;
+        WorkItemId = string.Empty;
     }
 }
