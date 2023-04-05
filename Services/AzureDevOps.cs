@@ -105,4 +105,48 @@ public class AzureDevOps
 
         return new List<int>();
     }
+
+    private TimeSpan CalculateDuration(DateTime start, DateTime end)
+    {
+        return end - start;
+    }
+
+    private TimeSpan CalculateWorkDuration(DateTime start, DateTime end, TimeSpan lunchBreak)
+    {
+        TimeSpan duration = CalculateDuration(start, end);
+        if (duration > lunchBreak)
+        {
+            duration -= lunchBreak;
+        }
+        else
+        {
+            duration = TimeSpan.Zero;
+        }
+        return duration;
+    }
+
+    public List<string> GetWorkItemWorkTime(string organizationUrl, string pat, string name, string project)
+    {
+        var workItemIdsLst = GetWorkItemModifiedMonth(organizationUrl, pat, name, project);
+        var workItemIds    = string.Join(",", workItemIdsLst);
+        var workItems      = GetWorkItemAsync(organizationUrl, pat, workItemIds).Result.value;
+        var ret            = new List<string>();
+
+        if (workItems is not null) 
+        {
+            workItems.ForEach(workItem =>
+            {
+                if (workItem.fields is not null)
+                {
+                    var startDate  = workItem.fields.MicrosoftVSTSSchedulingStartDate;
+                    var finishDate = workItem.fields.MicrosoftVSTSSchedulingFinishDate;
+                    var duration   = CalculateDuration(startDate, finishDate);
+                    
+                    ret.Add($"Work Item: {workItem.id} - {workItem.fields.SystemTitle} - {workItem.fields.SystemState} - | Duration: {duration}");
+                }
+            });
+        }
+
+        return ret;
+    }
 }

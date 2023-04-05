@@ -80,6 +80,9 @@ public class ResponseWorkItem
         [JsonProperty("Microsoft.VSTS.Common.ValueArea")]
         public string? MicrosoftVSTSCommonValueArea { get; set; }
 
+        [JsonProperty("Microsoft.VSTS.Scheduling.StartDate")]
+        public DateTime MicrosoftVSTSSchedulingStartDate { get; set; }
+
         [JsonProperty("Microsoft.VSTS.Scheduling.FinishDate")]
         public DateTime MicrosoftVSTSSchedulingFinishDate { get; set; }
 
